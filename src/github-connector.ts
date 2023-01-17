@@ -102,7 +102,7 @@ export class GithubConnector {
       payload: { repository, pull_request: pullRequest },
     } = context;
 
-    const owner = context?.payload?.organization?.login?.owner || context.payload.repository?.owner;
+    const owner: IGithubData['owner'] = context?.payload?.organization?.login?.owner || context.payload.repository?.owner.login;
 
     return {
       eventName,
