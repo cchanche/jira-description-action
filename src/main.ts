@@ -27,7 +27,7 @@ async function run(): Promise<void> {
     await githubConnector.updatePrDetails(details);
   } catch (error) {
     console.log('JIRA key was not found');
-    core.error(error.message);
+    core.error(error);
 
     if (FAIL_WHEN_JIRA_ISSUE_NOT_FOUND) {
       core.setFailed(error.message);
