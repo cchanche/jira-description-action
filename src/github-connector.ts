@@ -77,6 +77,8 @@ export class GithubConnector {
       body: getPRDescription(recentBody, buildPRDescription(details)),
     };
 
+    console.log(prData);
+
     return await this.client.pulls.update(prData);
   }
 
