@@ -95,6 +95,8 @@ export class GithubConnector {
   }
 
   private getGithubData(): IGithubData {
+    console.log(context);
+
     const {
       eventName,
       payload: {
@@ -103,8 +105,6 @@ export class GithubConnector {
         pull_request: pullRequest,
       },
     } = context;
-
-    console.log(context);
 
     return {
       eventName,
