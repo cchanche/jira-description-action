@@ -47,7 +47,11 @@ export class JiraConnector {
       };
     } catch (error) {
       if (error.response) {
-        throw new Error(JSON.stringify(error.response, null, 4));
+        try {
+          throw new Error(JSON.stringify(error.response, null, 4));
+        } catch (err) {
+          throw error;
+        }
       }
       throw error;
     }
