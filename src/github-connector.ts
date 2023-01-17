@@ -89,6 +89,7 @@ export class GithubConnector {
         pull_number: number,
       })
       .then(({ data }: { data: PullRequestParams }) => {
+        console.log(data);
         return data.body || '';
       });
   }
