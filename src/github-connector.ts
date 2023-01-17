@@ -103,6 +103,8 @@ export class GithubConnector {
       },
     } = context;
 
+    console.log(context);
+
     return {
       eventName,
       repository,
