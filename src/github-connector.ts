@@ -89,7 +89,6 @@ export class GithubConnector {
         pull_number: number,
       })
       .then(({ data }: { data: PullRequestParams }) => {
-        console.log(data);
         return data.body || '';
       });
   }
@@ -101,8 +100,6 @@ export class GithubConnector {
     } = context;
 
     const owner = context?.payload?.organization?.login?.owner || context.payload.repository?.owner;
-
-    console.log(owner);
 
     return {
       eventName,
