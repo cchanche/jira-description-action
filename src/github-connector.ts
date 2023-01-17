@@ -77,14 +77,11 @@ export class GithubConnector {
       body: getPRDescription(recentBody, buildPRDescription(details)),
     };
 
-    console.log(prData);
-
     return await this.client.pulls.update(prData);
   }
 
   // PR description may have been updated by some other action in the same job, need to re-fetch it to get the latest
   async getLatestPRDescription({ owner, repo, number }: { owner: string; repo: string; number: number }): Promise<string> {
-    console.log({ owner, repo, number });
     return this.octokit.pulls
       .get({
         owner,
