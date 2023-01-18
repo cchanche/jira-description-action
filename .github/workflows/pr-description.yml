@@ -1,0 +1,19 @@
+name: Set PR description
+on:
+  pull_request:
+    types: [opened, synchronize, edited, reopened, ready_for_review]
+
+jobs:
+  update-pr-body:
+    name: 💬 Jira details
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: cchanche/jira-description-action@test-reproduction-message
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          jira-token: ${{ secrets.JIRA_TOKEN }}
+          jira-base-url: https://job4.atlassian.net
+          jira-project-key: "J4"
+          use: both

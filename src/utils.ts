@@ -7,6 +7,7 @@ import {
   WARNING_MESSAGE_ABOUT_HIDDEN_MARKERS,
 } from './constants';
 import { JIRADetails } from './types';
+import { AxiosError } from 'axios';
 
 const getJIRAIssueKey = (input: string, regexp: RegExp = JIRA_REGEX_MATCHER): string | null => {
   const matches = regexp.exec(input);
@@ -60,8 +61,8 @@ export const getPRDescription = (oldBody: string, details: string): string => {
   const rg = new RegExp(`${hiddenMarkerStartRg}([\\s\\S]+)${hiddenMarkerEndRg}`, 'igm');
   const bodyWithoutJiraDetails = (oldBody ?? '').replace(rg, '');
 
-  return `${WARNING_MESSAGE_ABOUT_HIDDEN_MARKERS}
-${HIDDEN_MARKER_START}
+  return `${HIDDEN_MARKER_START}
+${WARNING_MESSAGE_ABOUT_HIDDEN_MARKERS}
 ${details}
 ${HIDDEN_MARKER_END}
 ${bodyWithoutJiraDetails}`;
@@ -78,3 +79,5 @@ export const buildPRDescription = (details: JIRADetails) => {
  
 `;
 };
+
+export const isAxiosError = <T = any>(err: Error): err is AxiosError<T> => !!(err as AxiosError)?.isAxiosError;
